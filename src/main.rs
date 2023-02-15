@@ -11,9 +11,12 @@ fn load_csv_file(file_path: &str) -> Result<DataFrame, PolarsError> {
 }
 
 fn main() {
-    let file_path = "C:/Users/jorge.grisman/Documents/Not Scored_NPS_Survey_Comment_Analysis2.csv";
+    let file_path = "data/test.csv";
     let df = load_csv_file(file_path).unwrap();
+    let comments_col = df.column("Name").unwrap();
+    let comments_col_head = comments_col.head(Some(5));
     println!("{}", df.head(Some(5)));
+    println!("{}", comments_col_head);
     println!("{:?}", df.shape());
 }
 
